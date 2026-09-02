@@ -163,6 +163,20 @@
           data: { label: label, page: page, href: href }
         });
       }
+
+      // Push to Google Analytics 4 (gtag.js)
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'click_' + category, {
+          event_category: category,
+          event_label: label,
+          page_path: window.location.pathname
+        });
+      }
+
+      // Push to Microsoft Clarity
+      if (typeof window.clarity === 'function') {
+        window.clarity('event', (category + '_' + label.slice(0, 25)).replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase());
+      }
     }, true);
   }
 
