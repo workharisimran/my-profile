@@ -67,6 +67,11 @@
       timestamp: new Date().toISOString()
     });
 
+    // Push to Vercel Analytics if available
+    if (typeof window.va === 'function') {
+      window.va('event', { name: 'page_view', data: { page: page } });
+    }
+
     saveAnalytics(data);
   }
 
@@ -150,6 +155,14 @@
         click_href: href,
         page_name: page
       });
+
+      // Push to Vercel Analytics if available
+      if (typeof window.va === 'function') {
+        window.va('event', {
+          name: 'click_' + category,
+          data: { label: label, page: page, href: href }
+        });
+      }
     }, true);
   }
 
