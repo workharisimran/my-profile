@@ -1,6 +1,6 @@
 # Dependencies
 node_modules/
-package-lock.json
+# package-lock.json - Lock file is now tracked for dependency consistency
 
 # Vercel
 .vercel/
