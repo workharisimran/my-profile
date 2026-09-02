@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef533e"/>
+      <stop offset="50%" stop-color="#d14b3b"/>
+      <stop offset="100%" stop-color="#9f2c20"/>
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#532518" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <!-- Background Rounded Rect with Shadow -->
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#brandGrad)" filter="url(#shadow)"/>
+  <!-- Subtle Highlight Border -->
+  <rect x="4.5" y="4.5" width="55" height="55" rx="17.5" fill="none" stroke="url(#borderGrad)" stroke-width="1.2"/>
+  <!-- Monogram HI -->
+  <g fill="#fffdf9" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Aptos', sans-serif" font-weight="900" font-size="25" letter-spacing="1.5">
+    <text x="32" y="41" text-anchor="middle" dominant-baseline="auto">HI</text>
+  </g>
+  <!-- Small dot accent -->
+  <circle cx="49" cy="18" r="3.5" fill="#facc15"/>
+</svg>

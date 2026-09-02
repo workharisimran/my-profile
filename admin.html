@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N49SMPBK');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admin Analytics & Click Tracker Dashboard for Haris I M Portfolio.">
+  <title>Admin Dashboard &middot; Click Analytics | HARIS I M</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-hero {
+      padding: 3rem 0 2rem;
+    }
+    .admin-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin: 2.5rem 0;
+    }
+    .admin-stat-card {
+      padding: 1.6rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .admin-stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(83, 37, 24, 0.16);
+    }
+    .admin-stat-card.featured-stat {
+      background: linear-gradient(145deg, rgba(255, 250, 230, 0.95), rgba(255, 243, 205, 0.9));
+      border: 2px solid rgba(245, 158, 11, 0.4);
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .stat-value {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--ink);
+      font-family: "Aptos Display", "Franklin Gothic Medium", sans-serif;
+      line-height: 1;
+      margin: 0.8rem 0 0.4rem;
+    }
+    .stat-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin: 0;
+    }
+    .analytics-section-card {
+      padding: 2.2rem;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      margin-bottom: 2.5rem;
+    }
+    .section-card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin: 0 0 0.5rem;
+      color: var(--ink);
+    }
+    .progress-bar-group {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 1.2rem;
+    }
+    .progress-row {
+      display: grid;
+      gap: 0.4rem;
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(27, 23, 23, 0.08);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent) 0%, #ef7d58 100%);
+      transition: width 400ms ease;
+    }
+    .progress-fill.bmc {
+      background: linear-gradient(135deg, #ffd000 0%, #ff9800 100%);
+    }
+    .progress-fill.linkedin {
+      background: #0a66c2;
+    }
+    .progress-fill.projects {
+      background: #10b981;
+    }
+    .table-responsive {
+      overflow-x: auto;
+      margin-top: 1.5rem;
+    }
+    .analytics-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+    .analytics-table th {
+      padding: 0.8rem 1rem;
+      border-bottom: 2px solid rgba(27, 23, 23, 0.1);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-dark);
+    }
+    .analytics-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(27, 23, 23, 0.06);
+      color: var(--ink);
+    }
+    .analytics-table tr:hover td {
+      background: rgba(209, 75, 59, 0.04);
+    }
+    .category-chip {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .category-chip.bmc { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+    .category-chip.linkedin { background: rgba(10, 102, 194, 0.12); color: #0a66c2; }
+    .category-chip.projects { background: rgba(16, 185, 129, 0.15); color: #047857; }
+    .category-chip.contact { background: rgba(168, 85, 247, 0.15); color: #7e22ce; }
+    .category-chip.navigation { background: rgba(27, 23, 23, 0.08); color: var(--muted); }
+    .category-chip.services { background: rgba(209, 75, 59, 0.12); color: var(--accent-dark); }
+    .category-chip.filter { background: rgba(59, 130, 246, 0.12); color: #1d4ed8; }
+    .category-chip.other { background: rgba(27, 23, 23, 0.06); color: var(--muted); }
+
+    @media (max-width: 1080px) {
+      .admin-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 600px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N49SMPBK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <!-- Universal Header -->
+  <header class="site-header">
+    <div class="header-main">
+      <a class="brand-link" href="index.html" aria-label="HARIS I M Home">
+        <img src="logo.svg" alt="HARIS I M" class="brand-logo-img" width="180" height="42">
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="experience.html">Experience &amp; Projects</a>
+        <a href="experience.html#services">Services</a>
+        <a href="admin.html" class="active" aria-current="page">Admin Dashboard</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="coffee-btn" href="https://buymeacoffee.com/harisimranetpa" target="_blank" rel="noreferrer" title="Buy Me a Coffee">
+          <span class="coffee-icon">☕</span>
+          <span>Buy Me a Coffee</span>
+        </a>
+        <a class="header-link" href="https://www.linkedin.com/in/harisimetpa/" target="_blank" rel="noreferrer" title="LinkedIn Profile">
+          <span class="nav-icon">in</span>
+          <span>LinkedIn</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" type="button">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile dropdown drawer -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="experience.html">Experience &amp; Projects</a>
+        <a href="experience.html#services">Services</a>
+        <a href="admin.html" class="active">Admin Dashboard</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="mobile-actions">
+        <a class="coffee-btn w-full" href="https://buymeacoffee.com/harisimranetpa" target="_blank" rel="noreferrer">
+          <span class="coffee-icon">☕</span>
+          <span>Buy Me a Coffee</span>
+        </a>
+        <a class="header-link w-full" href="https://www.linkedin.com/in/harisimetpa/" target="_blank" rel="noreferrer">
+          <span>LinkedIn Profile &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section admin-hero">
+    <div class="section-heading">
+      <div class="headline-badge">Analytics &amp; Click Tracker</div>
+      <h1 style="font-size: clamp(2.4rem, 5.5vw, 4rem); line-height: 1.05; letter-spacing: -0.03em; margin: 0.4rem 0;">
+        Admin Click &amp; Traffic Telemetry
+      </h1>
+      <p class="hero-text" style="max-width: 48rem; margin-top: 0.6rem;">
+        Real-time telemetry measuring visitor interactions, page traffic, Buy Me a Coffee clicks, LinkedIn connections, and platform redirects across the portfolio.
+      </p>
+
+      <div class="admin-controls">
+        <button class="button button-primary" id="refreshBtn" type="button">
+          🔄 Refresh Numbers
+        </button>
+        <button class="button button-secondary" id="exportBtn" type="button">
+          📥 Export JSON Data
+        </button>
+        <button class="button button-secondary" id="simulateBmcBtn" type="button">
+          ☕ Test Buy Me a Coffee Click
+        </button>
+        <button class="button button-secondary" id="resetBtn" type="button" style="border-color: rgba(239, 68, 68, 0.4); color: #b91c1c;">
+          ⚠️ Reset Data
+        </button>
+      </div>
+    </div>
+
+    <!-- KPI Metric Cards Grid -->
+    <div class="admin-grid">
+      <!-- Total Page Views -->
+      <div class="admin-stat-card">
+        <div>
+          <div class="stat-label">
+            <span>Page Views</span>
+            <span>👁️</span>
+          </div>
+          <div class="stat-value" id="totalViews">0</div>
+        </div>
+        <p class="stat-sub" id="viewsBreakdown">Loading breakdown...</p>
+      </div>
+
+      <!-- Total Clicks -->
+      <div class="admin-stat-card">
+        <div>
+          <div class="stat-label">
+            <span>Total Clicks</span>
+            <span>👆</span>
+          </div>
+          <div class="stat-value" id="totalClicks">0</div>
+        </div>
+        <p class="stat-sub">Across buttons, links &amp; navigation</p>
+      </div>
+
+      <!-- Buy Me a Coffee Clicks -->
+      <div class="admin-stat-card featured-stat">
+        <div>
+          <div class="stat-label" style="color: #92400e;">
+            <span>Buy Me a Coffee</span>
+            <span>☕</span>
+          </div>
+          <div class="stat-value" id="bmcClicks" style="color: #78350f;">0</div>
+        </div>
+        <p class="stat-sub" style="color: #92400e; font-weight: 700;">Supporter intent &amp; donations</p>
+      </div>
+
+      <!-- LinkedIn Clicks -->
+      <div class="admin-stat-card">
+        <div>
+          <div class="stat-label">
+            <span>LinkedIn Clicks</span>
+            <span>💼</span>
+          </div>
+          <div class="stat-value" id="linkedinClicks">0</div>
+        </div>
+        <p class="stat-sub">Profile view redirects</p>
+      </div>
+    </div>
+
+    <!-- Secondary Row: Outbound Projects & Inquiries -->
+    <div class="admin-grid" style="margin-top: -1rem; margin-bottom: 2.5rem;">
+      <div class="admin-stat-card">
+        <div>
+          <div class="stat-label">
+            <span>Project Clicks</span>
+            <span>🚀</span>
+          </div>
+          <div class="stat-value" id="projectClicks">0</div>
+        </div>
+        <p class="stat-sub">EduTrack, myResto Today, etc.</p>
+      </div>
+
+      <div class="admin-stat-card">
+        <div>
+          <div class="stat-label">
+            <span>Contact Actions</span>
+            <span>📞</span>
+          </div>
+          <div class="stat-value" id="contactClicks">0</div>
+        </div>
+        <p class="stat-sub">Email &amp; phone calls triggered</p>
+      </div>
+
+      <div class="admin-stat-card">
+        <div>
+          <div class="stat-label">
+            <span>Service Card Clicks</span>
+            <span>💡</span>
+          </div>
+          <div class="stat-value" id="servicesClicks">0</div>
+        </div>
+        <p class="stat-sub">15 Core Service offerings explored</p>
+      </div>
+
+      <div class="admin-stat-card">
+        <div>
+          <div class="stat-label">
+            <span>GTM Tag Status</span>
+            <span>🏷️</span>
+          </div>
+          <div class="stat-value" style="font-size: 1.8rem; color: #15803d; margin-top: 1.3rem;">ACTIVE</div>
+        </div>
+        <p class="stat-sub">ID: GTM-N49SMPBK connected</p>
+      </div>
+    </div>
+
+    <!-- Breakdown by Category Bar Chart Section -->
+    <div class="analytics-section-card">
+      <h2 class="section-card-title">Click Distribution by Category</h2>
+      <p class="hero-text" style="margin: 0; font-size: 0.94rem;">
+        Visual percentage breakdown of where users are directing their attention.
+      </p>
+
+      <div class="progress-bar-group" id="categoryBars">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Most Clicked Targets Table -->
+    <div class="analytics-section-card">
+      <h2 class="section-card-title">Most Clicked Targets &amp; Actions</h2>
+      <p class="hero-text" style="margin: 0; font-size: 0.94rem;">
+        Ranked list of specific links, buttons, and platforms clicked by users.
+      </p>
+
+      <div class="table-responsive">
+        <table class="analytics-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Interactive Element / Target</th>
+              <th>Total Clicks</th>
+              <th>Share</th>
+            </tr>
+          </thead>
+          <tbody id="topTargetsBody">
+            <!-- Injected via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Live Event Stream Log -->
+    <div class="analytics-section-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 class="section-card-title" style="margin: 0;">Live Click Stream Log</h2>
+          <p class="hero-text" style="margin: 0.2rem 0 0; font-size: 0.92rem;">
+            Real-time feed of the last 100 interactions recorded by the click tracker.
+          </p>
+        </div>
+        <span class="category-chip" style="background: rgba(34, 197, 94, 0.15); color: #15803d; font-weight: 800;">
+          ● LIVE STREAMING
+        </span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="analytics-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Page</th>
+              <th>Category</th>
+              <th>Action / Target</th>
+              <th>Destination URL</th>
+            </tr>
+          </thead>
+          <tbody id="eventStreamBody">
+            <!-- Injected via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-logo" href="index.html" aria-label="HARIS I M Home">
+          <img src="logo.svg" alt="HARIS I M" width="180" height="42">
+        </a>
+        <p class="footer-bio">
+          Founder, CEO &amp; MD at <strong>myResto Today Pvt. Ltd.</strong> | AI-Powered FoodTech SaaS Builder | Restaurant Growth Consultant &amp; SOP Implementer | F&amp;B &amp; EduTech Innovator | Entrepreneur
+        </p>
+        <div class="footer-social-row">
+          <a class="social-pill-btn bmc-pill" href="https://buymeacoffee.com/harisimranetpa" target="_blank" rel="noreferrer" title="Buy Me a Coffee">
+            <span>☕</span>
+            <span>Buy Me a Coffee</span>
+          </a>
+          <a class="social-pill-btn linkedin-pill" href="https://www.linkedin.com/in/harisimetpa/" target="_blank" rel="noreferrer" title="LinkedIn Profile">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63c0-.9-.73-1.63-1.63-1.63Z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Navigation</p>
+        <ul class="footer-links-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="experience.html#services">Services (15)</a></li>
+          <li><a href="experience.html#projects">Featured Projects</a></li>
+          <li><a href="admin.html">Admin Dashboard</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Platforms</p>
+        <ul class="footer-links-list">
+          <li><a href="https://myrestotoday.com" target="_blank" rel="noreferrer">myResto Today &rarr;</a></li>
+          <li><a href="https://foredu.co.in/" target="_blank" rel="noreferrer">EduTrack &rarr;</a></li>
+          <li><a href="experience.html#projects">TeaQue Digital</a></li>
+          <li><a href="experience.html#projects">Fixcom India</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Direct Connect</p>
+        <ul class="footer-links-list">
+          <li>
+            <a href="mailto:md@myrestotoday.io">
+              <span>✉️</span>
+              <span>md@myrestotoday.io</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:+919747650176">
+              <span>📞</span>
+              <span>+91 97476 50176</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://buymeacoffee.com/harisimranetpa" target="_blank" rel="noreferrer" style="color: #b45309; font-weight: 700;">
+              <span>☕</span>
+              <span>buymeacoffee.com/harisimranetpa</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/harisimetpa/" target="_blank" rel="noreferrer" style="color: #0a66c2; font-weight: 700;">
+              <span>🔗</span>
+              <span>LinkedIn Profile</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 HARIS I M. All rights reserved.</p>
+      <p class="footer-credits">
+        <span>Founder</span> &bull; <span>Software Architect</span> &bull; <span>Vibe Coder</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Include Tracker Script -->
+  <script src="tracker.js"></script>
+
+  <!-- Admin Dashboard Logic -->
+  <script>
+    function renderDashboard() {
+      const data = window.PortfolioAnalytics ? window.PortfolioAnalytics.getData() : null;
+      if (!data) return;
+
+      // 1. Page views
+      const totalViews = data.pageViews.total || 0;
+      document.getElementById('totalViews').innerText = totalViews.toLocaleString();
+      
+      const byPage = data.pageViews.byPage || {};
+      const pageBreakdownList = Object.keys(byPage).map(k => `${k}: ${byPage[k]}`).join(' &bull; ');
+      document.getElementById('viewsBreakdown').innerHTML = pageBreakdownList || 'No page views recorded yet';
+
+      // 2. Clicks Overview
+      const totalClicks = data.clicks.total || 0;
+      document.getElementById('totalClicks').innerText = totalClicks.toLocaleString();
+
+      const cats = data.clicks.byCategory || {};
+      document.getElementById('bmcClicks').innerText = (cats.bmc || 0).toLocaleString();
+      document.getElementById('linkedinClicks').innerText = (cats.linkedin || 0).toLocaleString();
+      document.getElementById('projectClicks').innerText = (cats.projects || 0).toLocaleString();
+      document.getElementById('contactClicks').innerText = (cats.contact || 0).toLocaleString();
+      document.getElementById('servicesClicks').innerText = (cats.services || 0).toLocaleString();
+
+      // 3. Category Progress Bars
+      const categoryContainer = document.getElementById('categoryBars');
+      categoryContainer.innerHTML = '';
+
+      const catLabels = {
+        bmc: { label: '☕ Buy Me a Coffee Support', class: 'bmc' },
+        linkedin: { label: '💼 LinkedIn Profile Inquiries', class: 'linkedin' },
+        projects: { label: '🚀 Projects (EduTrack, myResto, etc.)', class: 'projects' },
+        contact: { label: '📞 Direct Contact (Email & Phone)', class: 'contact' },
+        services: { label: '💡 Core Services (15 Offerings)', class: 'services' },
+        navigation: { label: '🧭 Site Navigation Clicks', class: 'navigation' },
+        filter: { label: '🔍 Timeline Category Filters', class: 'filter' },
+        other: { label: '⚡ Other Interactive Clicks', class: 'other' }
+      };
+
+      Object.keys(catLabels).forEach(key => {
+        const count = cats[key] || 0;
+        const pct = totalClicks > 0 ? ((count / totalClicks) * 100).toFixed(1) : 0;
+
+        const row = document.createElement('div');
+        row.className = 'progress-row';
+        row.innerHTML = `
+          <div class="progress-labels">
+            <span>${catLabels[key].label}</span>
+            <span><strong>${count}</strong> (${pct}%)</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill ${catLabels[key].class}" style="width: ${pct}%;"></div>
+          </div>
+        `;
+        categoryContainer.appendChild(row);
+      });
+
+      // 4. Top Targets Table
+      const targets = data.clicks.byTarget || {};
+      const sortedTargets = Object.entries(targets).sort((a, b) => b[1] - a[1]);
+      const topBody = document.getElementById('topTargetsBody');
+      topBody.innerHTML = '';
+
+      if (sortedTargets.length === 0) {
+        topBody.innerHTML = '<tr><td colspan="4" style="text-align:center; color: var(--muted); padding: 1.5rem;">No click events captured yet. Navigate the site or click buttons to view data.</td></tr>';
+      } else {
+        sortedTargets.slice(0, 15).forEach(([target, count], idx) => {
+          const pct = totalClicks > 0 ? ((count / totalClicks) * 100).toFixed(1) : 0;
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><strong>#${idx + 1}</strong></td>
+            <td><strong>${target}</strong></td>
+            <td>${count} clicks</td>
+            <td><span class="category-chip bmc">${pct}%</span></td>
+          `;
+          topBody.appendChild(tr);
+        });
+      }
+
+      // 5. Recent Event Stream
+      const events = data.events || [];
+      const streamBody = document.getElementById('eventStreamBody');
+      streamBody.innerHTML = '';
+
+      if (events.length === 0) {
+        streamBody.innerHTML = '<tr><td colspan="5" style="text-align:center; color: var(--muted); padding: 1.5rem;">Event stream is empty. Clicks will appear here live.</td></tr>';
+      } else {
+        events.slice(0, 30).forEach(ev => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td style="color: var(--muted); font-size: 0.82rem;">${ev.date} ${ev.timestamp}</td>
+            <td><strong>${ev.page || 'Home'}</strong></td>
+            <td><span class="category-chip ${ev.category}">${ev.category}</span></td>
+            <td>${ev.label}</td>
+            <td style="color: var(--muted); font-family: monospace; font-size: 0.82rem;">${ev.href ? (ev.href.length > 35 ? ev.href.slice(0, 35) + '...' : ev.href) : '-'}</td>
+          `;
+          streamBody.appendChild(tr);
+        });
+      }
+    }
+
+    // Controls
+    document.getElementById('refreshBtn').addEventListener('click', renderDashboard);
+    
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      if (window.PortfolioAnalytics) window.PortfolioAnalytics.exportData();
+    });
+
+    document.getElementById('simulateBmcBtn').addEventListener('click', () => {
+      if (window.PortfolioAnalytics) {
+        window.PortfolioAnalytics.simulateClick('bmc', 'Buy Me a Coffee');
+        renderDashboard();
+      }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      if (confirm('Are you sure you want to reset all portfolio click and view analytics?')) {
+        if (window.PortfolioAnalytics) window.PortfolioAnalytics.resetData();
+        renderDashboard();
+      }
+    });
+
+    // Listen to real-time events
+    window.addEventListener('analytics_updated', renderDashboard);
+    window.addEventListener('storage', renderDashboard);
+
+    // Initial render
+    document.addEventListener('DOMContentLoaded', renderDashboard);
+    renderDashboard();
+
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  </script>
+</body>
+</html>
