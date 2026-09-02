@@ -187,14 +187,41 @@
     }
   };
 
+  // Secret admin access shortcut: Ctrl + Shift + A or triple click brand logo
+  function setupAdminShortcut() {
+    window.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        window.location.href = 'admin.html';
+      }
+    });
+
+    let logoClicks = 0;
+    let logoTimer = null;
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.brand-link') || e.target.closest('.brand-mark') || e.target.closest('.footer-logo')) {
+        logoClicks++;
+        clearTimeout(logoTimer);
+        if (logoClicks >= 3) {
+          logoClicks = 0;
+          window.location.href = 'admin.html';
+        } else {
+          logoTimer = setTimeout(() => { logoClicks = 0; }, 800);
+        }
+      }
+    });
+  }
+
   // Run on DOM loaded or immediately
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       recordPageView();
       setupClickTracker();
+      setupAdminShortcut();
     });
   } else {
     recordPageView();
     setupClickTracker();
+    setupAdminShortcut();
   }
 })();

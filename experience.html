@@ -31,16 +31,27 @@
   <header class="site-header">
     <div class="header-main">
       <a class="brand-link" href="index.html" aria-label="HARIS I M Home">
-        <img src="logo.svg" alt="HARIS I M" class="brand-logo-img" width="180" height="42">
+        <div class="brand-avatar-wrap">
+          <img src="logo.png" alt="Haris I M" class="brand-avatar-img">
+        </div>
+        <div class="brand-text-wrap">
+          <span class="brand-name">HARIS I M</span>
+        </div>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="index.html#about">About</a>
-        <a href="experience.html" class="active" aria-current="page">Experience</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="index.html#expertise">Expertise</a>
-        <a href="index.html#approach">Approach</a>
+        <a href="experience.html" class="active" aria-current="page">Experience &amp; Projects</a>
+        <div class="nav-dropdown">
+          <a href="#services" class="nav-dropdown-trigger">
+            <span>Services</span>
+            <span class="dropdown-arrow">▼</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#services" class="dropdown-item">Services (15 Offerings)</a>
+            <a href="index.html#expertise" class="dropdown-item">Expertise &amp; Approach</a>
+          </div>
+        </div>
         <a href="#contact">Contact</a>
       </nav>
       <div class="header-actions">
@@ -64,11 +75,14 @@
       <nav class="mobile-nav">
         <a href="index.html">Home</a>
         <a href="index.html#about">About</a>
-        <a href="experience.html" class="active">Experience</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="index.html#expertise">Expertise</a>
-        <a href="index.html#approach">Approach</a>
+        <a href="experience.html" class="active">Experience &amp; Projects</a>
+        <div class="mobile-dropdown">
+          <a href="#services">Services</a>
+          <div class="mobile-submenu">
+            <a href="#services">&bull; All Services (15 Offerings)</a>
+            <a href="index.html#expertise">&bull; Expertise &amp; Approach</a>
+          </div>
+        </div>
         <a href="#contact">Contact</a>
       </nav>
       <div class="mobile-actions">
@@ -77,6 +91,7 @@
           <span>Buy Me a Coffee</span>
         </a>
         <a class="header-link w-full" href="https://www.linkedin.com/in/harisimetpa/" target="_blank" rel="noreferrer">
+          <span class="nav-icon">in</span>
           <span>LinkedIn Profile &rarr;</span>
         </a>
       </div>
@@ -1049,7 +1064,12 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="footer-logo" href="index.html" aria-label="HARIS I M Home">
-          <img src="logo.svg" alt="HARIS I M" width="180" height="42">
+          <div class="brand-avatar-wrap footer-avatar">
+            <img src="logo.png" alt="Haris I M" class="brand-avatar-img">
+          </div>
+          <div class="brand-text-wrap">
+            <span class="brand-name">HARIS I M</span>
+          </div>
         </a>
         <p class="footer-bio">
           Founder, CEO &amp; MD at <strong>myResto Today Pvt. Ltd.</strong> | AI-Powered FoodTech SaaS Builder | Restaurant Growth Consultant &amp; SOP Implementer | F&amp;B &amp; EduTech Innovator | Entrepreneur
@@ -1076,7 +1096,6 @@
           <li><a href="#projects">Featured Projects</a></li>
           <li><a href="index.html#expertise">Core Expertise</a></li>
           <li><a href="index.html#approach">Approach Framework</a></li>
-          <li><a href="admin.html" style="color: var(--accent-dark); font-weight: 700;">Admin Dashboard</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -1126,33 +1145,18 @@
     <div class="footer-bottom">
       <p>&copy; 2026 HARIS I M. All rights reserved.</p>
       <p class="footer-credits">
-        <span>Founder</span> &bull; <span>Software Architect</span> &bull; <span>Vibe Coder</span> &bull; <a href="admin.html" style="color: inherit; text-decoration: underline;">Analytics</a>
+        <span>Founder</span> &bull; <span>Software Architect</span> &bull; <span>Vibe Coder</span>
       </p>
     </div>
   </footer>
 
-  <!-- Page Click Tracker & Analytics -->
+  <!-- Universal Layout & Click Tracker -->
+  <script src="layout.js"></script>
   <script src="tracker.js"></script>
 
-  <!-- Interactive Filter & Mobile Navigation Logic -->
+  <!-- Interactive Filter Logic -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Mobile Drawer Menu
-      const menuToggle = document.getElementById('menuToggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
-          menuToggle.classList.toggle('open');
-          mobileMenu.classList.toggle('open');
-        });
-        mobileMenu.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            menuToggle.classList.remove('open');
-            mobileMenu.classList.remove('open');
-          });
-        });
-      }
-
       // Experience Filter Buttons
       const filterButtons = document.querySelectorAll('.filter-btn');
       const cards = document.querySelectorAll('.exp-card');

@@ -154,6 +154,130 @@ a {
   color: var(--accent-dark);
 }
 
+/* Nav Dropdown (Services -> Expertise & Approach) */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: color 180ms ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-dropdown-trigger:hover,
+.nav-dropdown:hover .nav-dropdown-trigger,
+.nav-dropdown:focus-within .nav-dropdown-trigger,
+.nav-dropdown.active .nav-dropdown-trigger {
+  color: var(--accent-dark);
+}
+
+.dropdown-arrow {
+  display: inline-block;
+  font-size: 0.62rem;
+  transition: transform 200ms ease;
+}
+
+.nav-dropdown:hover .dropdown-arrow,
+.nav-dropdown:focus-within .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 210px;
+  background: var(--surface-strong);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  box-shadow: 0 16px 36px rgba(83, 37, 24, 0.16);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+/* Hover bridge so cursor doesn't lose dropdown */
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+  background: rgba(209, 75, 59, 0.08);
+  color: var(--accent-dark);
+}
+
+/* Mobile Submenu */
+.mobile-dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-left: 1.2rem;
+  margin-top: 0.3rem;
+  border-left: 2px solid rgba(209, 75, 59, 0.25);
+}
+
+.mobile-submenu a {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 0.4rem 0.6rem;
+}
+
+.mobile-submenu a:hover,
+.mobile-submenu a.active {
+  color: var(--accent-dark);
+  background: rgba(209, 75, 59, 0.06);
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -290,6 +414,38 @@ a {
 .w-full {
   width: 100%;
   justify-content: center;
+}
+
+/* Responsive Mobile Header */
+@media (max-width: 980px) {
+  .site-nav {
+    display: none !important;
+  }
+  .header-actions .coffee-btn,
+  .header-actions .header-link {
+    display: none !important;
+  }
+  .menu-toggle {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    padding: 0.75rem 1rem;
+  }
+  .brand-avatar-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+  .brand-name {
+    font-size: 1.05rem;
+  }
+  .menu-toggle {
+    width: 38px;
+    height: 38px;
+  }
 }
 
 .section {
@@ -620,16 +776,71 @@ a {
   font-size: 1.05rem;
 }
 
-/* Brand Link & Logo */
-.brand-link {
+/* Brand Link & Logo with logo.png */
+.brand-link,
+.footer-logo {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  transition: transform 180ms ease;
+  transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
 }
 
-.brand-link:hover {
-  transform: scale(1.02);
+.brand-link:hover,
+.footer-logo:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.brand-avatar-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 14px rgba(209, 75, 59, 0.22);
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--accent) 0%, #ef7d58 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-avatar-wrap.footer-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(83, 37, 24, 0.25);
+}
+
+.brand-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.brand-text-wrap {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand-name {
+  font-family: "Aptos Display", "Segoe UI", "Trebuchet MS", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.brand-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 2px;
 }
 
 .brand-logo-img {
