@@ -33,6 +33,7 @@ export default function Header() {
           </div>
           <div className="brand-text-wrap">
             <span className="brand-name">HARIS I M</span>
+            <span className="brand-sub">Founder, MD &amp; CEO</span>
           </div>
         </Link>
 
