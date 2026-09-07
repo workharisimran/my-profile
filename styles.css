@@ -159,15 +159,65 @@ a {
   line-height: 1.2;
 }
 
+/* Seamless Borderless Dark Portrait */
+.hero-col-center {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+}
+
+.portrait-dark-canvas {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: transparent;
+}
+
+.portrait-dark-img {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  max-height: 640px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 0;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  transform: scale(1.04);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, rgba(0, 0, 0, 0.5) 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, rgba(0, 0, 0, 0.5) 92%, transparent 100%);
+  transition: transform 300ms ease;
+}
+
+.portrait-dark-img:hover {
+  transform: translateY(-4px) scale(1.06);
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 @media (max-width: 768px) {
   .site-header {
     width: min(calc(100% - 1.5rem), var(--max-width));
-    padding: 0.7rem 1.1rem;
+    padding: 0.65rem 1.1rem;
     margin-top: 0.8rem;
   }
   .brand-avatar-wrap {
     width: 38px;
     height: 38px;
+  }
+  .contact-panel {
+    grid-template-columns: 1fr;
+    padding: 1.8rem 1.4rem;
   }
 }
 
@@ -189,5 +239,25 @@ a {
   }
   .brand-sub {
     font-size: 0.58rem;
+  }
+  .contact-panel {
+    padding: 1.25rem 0.95rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-header {
+    width: calc(100% - 0.75rem);
+    padding: 0.45rem 0.65rem;
+  }
+  .brand-avatar-wrap {
+    width: 30px;
+    height: 30px;
+  }
+  .brand-name {
+    font-size: 0.84rem;
+  }
+  .brand-sub {
+    font-size: 0.52rem;
   }
 }
