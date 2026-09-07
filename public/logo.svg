@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" width="240" height="56" fill="none">
+  <defs>
+    <linearGradient id="logoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f25f4b"/>
+      <stop offset="60%" stop-color="#d14b3b"/>
+      <stop offset="100%" stop-color="#9f2c20"/>
+    </linearGradient>
+    <linearGradient id="logoStrokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.15"/>
+    </linearGradient>
+    <filter id="logoShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#832819" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Emblem Icon -->
+  <g transform="translate(4, 4)">
+    <rect width="48" height="48" rx="16" fill="url(#logoBgGrad)" filter="url(#logoShadow)"/>
+    <rect x="0.75" y="0.75" width="46.5" height="46.5" rx="15.25" fill="none" stroke="url(#logoStrokeGrad)" stroke-width="1.5"/>
+    <!-- Modern HI letters -->
+    <text x="24" y="32" fill="#fffdf9" font-family="'Segoe UI', 'Aptos', sans-serif" font-weight="900" font-size="20" letter-spacing="1.5" text-anchor="middle">HI</text>
+    <circle cx="39" cy="14" r="3.2" fill="#fde047"/>
+  </g>
+
+  <!-- Typography Brand Name -->
+  <text x="64" y="34" fill="#1b1717" font-family="'Segoe UI', 'Aptos Display', sans-serif" font-weight="800" font-size="18" letter-spacing="0.12em">HARIS I M</text>
+</svg>
