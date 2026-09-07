@@ -74,13 +74,13 @@ export default function Footer() {
             <li>
               <a href="https://myrestotoday.com" target="_blank" rel="noreferrer" className="highlight-link">
                 <span>myResto Today</span>
-                <span className="arrow-out">&nearr;</span>
+                <span className="arrow-out">↗</span>
               </a>
             </li>
             <li>
               <a href="https://foredu.co.in/" target="_blank" rel="noreferrer" className="highlight-link">
                 <span>EduTrack Cloud</span>
-                <span className="arrow-out">&nearr;</span>
+                <span className="arrow-out">↗</span>
               </a>
             </li>
             <li><Link href="/experience#projects">TeaQue Digital Systems</Link></li>
@@ -113,7 +113,7 @@ export default function Footer() {
                 className="connect-link linkedin-link"
               >
                 <span className="connect-icon">💼</span>
-                <span>LinkedIn Profile &nearr;</span>
+                <span>LinkedIn Profile ↗</span>
               </a>
             </li>
             <li>
@@ -124,7 +124,7 @@ export default function Footer() {
                 className="connect-link coffee-link"
               >
                 <span className="connect-icon">☕</span>
-                <span>Buy Me a Coffee &nearr;</span>
+                <span>Buy Me a Coffee ↗</span>
               </a>
             </li>
           </ul>
