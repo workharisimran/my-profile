@@ -1,8 +1,14 @@
 import LaptopMockup from '@/components/LaptopMockup';
-import { SHOWCASE_DB, SHOWCASE_DATA } from '@/lib/showcase';
+import { getShowcaseWebsitesFromDb } from '@/lib/db';
+import { SHOWCASE_DB } from '@/lib/showcase';
 import { WebsiteItem } from '@/lib/types';
 
-export default function ShowcasePage() {
+export const revalidate = 60; // Revalidate data from DB every 60 seconds
+
+export default async function ShowcasePage() {
+  // Fetch live website details source directly from Neon Postgres DB
+  const websites: WebsiteItem[] = await getShowcaseWebsitesFromDb();
+
   return (
     <main id="top" className="showcase-page-container">
       {/* Page Hero Section */}
@@ -34,7 +40,7 @@ export default function ShowcasePage() {
       {/* Showcase Grid Section */}
       <section className="section showcase-main-section">
         <div className="showcase-grid">
-          {SHOWCASE_DATA.map((item: WebsiteItem) => {
+          {websites.map((item: WebsiteItem) => {
             const accent = item.accentColor || item.brandColor || '#00f59b';
             return (
               <article key={item.id} className="showcase-card">
