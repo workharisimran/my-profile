@@ -1,0 +1,129 @@
+{
+  "title": "Previous Website Development Works",
+  "subtitle": "A collection of premium websites designed and developed by HARIS I M.",
+  "version": "1.0.0",
+  "developer": {
+    "name": "HARIS I M",
+    "company": "myResto Today Pvt Ltd",
+    "website": "https://www.harisim.site"
+  },
+  "categories": [
+    "Islamic Platform",
+    "Education SaaS",
+    "Hospitality & Resort",
+    "Luxury Stay",
+    "FoodTech SaaS",
+    "E-Commerce",
+    "Personal Portfolio"
+  ],
+  "websites": [
+    {
+      "id": 1,
+      "slug": "darul-ifta-kauzariyya",
+      "name": "Darul Ifta Kauzariyya",
+      "category": "Islamic Platform",
+      "domain": "https://daruliftakauzariyya.com",
+      "image": "/mockep-images/darul-ifta.png",
+      "brandColor": "#0F766E",
+      "accentColor": "#C8A24A",
+      "description": "A complete Islamic Fatwa and knowledge platform with searchable fatwa archive, scholar directory, and multilingual Islamic question-answer system.",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "slug": "kauzariyya",
+      "name": "Al Jamiathul Kauzariyya",
+      "category": "Islamic Education",
+      "domain": "https://kauzariyya.com",
+      "image": "/mockep-images/kauzariyya.com.png",
+      "brandColor": "#005F3B",
+      "accentColor": "#D4AF37",
+      "description": "Official institutional website for Al Jamiathul Kauzariyya featuring academics, events, admissions, gallery, and educational resources.",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "slug": "edutrack",
+      "name": "EduTrack",
+      "category": "Education SaaS",
+      "domain": "https://foredu.co.in",
+      "image": "/mockep-images/edutrack.png",
+      "brandColor": "#16A34A",
+      "accentColor": "#DCFCE7",
+      "description": "Cloud-based SaaS platform for Madrasas, Hifz centers, Maktabs, and Islamic institutions to manage classes, attendance, fees, and teachers.",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "slug": "munnar-mahal",
+      "name": "Munnar Mahal Resort",
+      "category": "Hospitality & Resort",
+      "domain": "https://www.munnarmahal.com",
+      "image": "/mockep-images/munnarmahal.com.png",
+      "brandColor": "#0F4C3A",
+      "accentColor": "#C7923E",
+      "description": "Luxury heritage resort website showcasing rooms, activities, nearby attractions, booking experience, and premium hospitality branding.",
+      "featured": true
+    },
+    {
+      "id": 5,
+      "slug": "zaad-suite",
+      "name": "Zaad Suite",
+      "category": "Luxury Stay",
+      "domain": "https://www.zaadsuite.com",
+      "image": "/mockep-images/zaad-suite.png",
+      "brandColor": "#000000",
+      "accentColor": "#D4AF37",
+      "description": "Modern luxury suite website with premium branding, reservation experience, gallery, Google rating, and elegant hospitality UI.",
+      "featured": true
+    },
+    {
+      "id": 6,
+      "slug": "teaque",
+      "name": "TeaQue",
+      "category": "E-Commerce",
+      "domain": "https://teaque.co.in",
+      "image": "/mockep-images/teaque.png",
+      "brandColor": "#14532D",
+      "accentColor": "#84CC16",
+      "description": "Organic tea e-commerce website featuring premium tea products, online shopping, brand storytelling, and sustainable product experience.",
+      "featured": true
+    },
+    {
+      "id": 7,
+      "slug": "naseeha",
+      "name": "Naseeha",
+      "category": "Islamic Platform",
+      "domain": "https://naseeha.in",
+      "image": "/mockep-images/naseeha.in.png",
+      "brandColor": "#0B6B43",
+      "accentColor": "#9CCB3B",
+      "description": "Islamic guidance platform offering educational resources, services, news, contact support, and faith-based digital solutions.",
+      "featured": true
+    },
+    {
+      "id": 8,
+      "slug": "myrestotoday",
+      "name": "myResto Today",
+      "category": "FoodTech SaaS",
+      "domain": "https://myrestotoday.com",
+      "image": "/mockep-images/myrestotoday.com.png",
+      "brandColor": "#0F0F0F",
+      "accentColor": "#F59E0B",
+      "description": "AI-powered Restaurant POS and operating system for restaurants, cafes, cloud kitchens, and bakery businesses with complete business management.",
+      "featured": true
+    },
+    {
+      "id": 9,
+      "slug": "harisim-site",
+      "name": "HARIS I M Portfolio",
+      "category": "Personal Portfolio",
+      "domain": "https://www.harisim.site",
+      "image": "/mockep-images/harisim.site.png",
+      "brandColor": "#000000",
+      "accentColor": "#00F5A0",
+      "description": "Founder portfolio website presenting SaaS architecture, FoodTech products, startup consulting, projects, and professional experience.",
+      "featured": true
+    }
+  ]
+}

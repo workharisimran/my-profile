@@ -12,6 +12,7 @@ export default function Header() {
 
   const isHome = pathname === '/';
   const isExperience = pathname === '/experience';
+  const isShowcase = pathname === '/showcase';
 
   const toggleMobile = () => setMobileOpen((prev) => !prev);
   const closeMobile = () => setMobileOpen(false);
@@ -46,7 +47,10 @@ export default function Header() {
             About
           </Link>
           <Link href="/experience" className={isExperience ? 'active' : ''}>
-            Experience &amp; Projects
+            Experience
+          </Link>
+          <Link href="/showcase" className={isShowcase ? 'active' : ''}>
+            Web Showcase
           </Link>
 
           {/* Services Dropdown */}
@@ -120,7 +124,10 @@ export default function Header() {
             About
           </Link>
           <Link href="/experience" className={isExperience ? 'active' : ''} onClick={closeMobile}>
-            Experience &amp; Projects
+            Experience
+          </Link>
+          <Link href="/showcase" className={isShowcase ? 'active' : ''} onClick={closeMobile}>
+            Web Showcase
           </Link>
           <div className="mobile-dropdown">
             <Link href="/experience#services" onClick={closeMobile}>

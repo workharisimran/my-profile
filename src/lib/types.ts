@@ -1,5 +1,33 @@
 export type ExperienceCategory = 'all' | 'founding' | 'tech' | 'advisory' | 'education' | 'growth';
 
+export type ShowcaseCategory = string;
+
+export interface WebsiteItem {
+  id: number;
+  slug: string;
+  name: string;
+  category: string;
+  domain: string;
+  image: string;
+  brandColor: string;
+  accentColor: string;
+  description: string;
+  featured?: boolean;
+}
+
+export interface ShowcaseDatabase {
+  title: string;
+  subtitle: string;
+  version: string;
+  developer: {
+    name: string;
+    company: string;
+    website: string;
+  };
+  categories: string[];
+  websites: WebsiteItem[];
+}
+
 export interface ServiceItem {
   id: string;
   num: string;

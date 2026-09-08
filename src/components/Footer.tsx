@@ -58,6 +58,7 @@ export default function Footer() {
           <ul className="footer-links-list">
             <li><Link href="/">Home</Link></li>
             <li><Link href="/#about">About Haris</Link></li>
+            <li><Link href="/showcase" className="highlight-link">🌟 Web Showcase</Link></li>
             <li><Link href="/experience">Experience &amp; Track Record</Link></li>
             <li><Link href="/experience#services">Services (15 Offerings)</Link></li>
             <li><Link href="/experience#projects">Software Projects</Link></li>
@@ -83,6 +84,7 @@ export default function Footer() {
                 <span className="arrow-out">↗</span>
               </a>
             </li>
+            <li><Link href="/showcase">All Web Works &amp; Demos</Link></li>
             <li><Link href="/experience#projects">TeaQue Digital Systems</Link></li>
             <li><Link href="/experience#projects">Fixcom India</Link></li>
             <li><Link href="/experience#projects">Vibe Coder AI Suite</Link></li>
